@@ -2,7 +2,7 @@ dir=`pwd`
 cd 
 cd workspace/tesla-stack/dev-ops/
 
-./routing_allocation-disable.sh
+#./routing_allocation-disable.sh
 kill `cat /var/run/elasticsearch/pid9200`
 kill `cat /var/run/elasticsearch/pid9201`
 kill `cat /var/run/elasticsearch/pid9202`
