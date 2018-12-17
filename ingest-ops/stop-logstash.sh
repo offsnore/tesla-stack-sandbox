@@ -2,8 +2,7 @@
 dir=`pwd`
 cd
 cd workspace/elastic-stack/current/logstash
-kill `cat logstash.pid`
-rm logstash.pid
+kill `cat /var/run/logstash/logstash.pid`
 cd $dir
 
 
