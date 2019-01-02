@@ -6,3 +6,5 @@ for filename in /data/tesla/gui_settings/gui_settings*.json; do
 	printf "."
 #    done
 done
+#       --header "Content-Type: application/json" >> /dev/null 2>&1
+#       --header "Content-Type: application/json" >> gui_settings.out
