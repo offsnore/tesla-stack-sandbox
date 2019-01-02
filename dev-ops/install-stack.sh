@@ -1,10 +1,18 @@
 #!/bin/bash
 # Download and build Elastic Stack
-# Uses environment variables and symlinks to simplify management and operation of the stack
+# Uses environment variables galore and symlinks to simplify management and operation of the stack, halfway to demo various techniques useful in managing a stack. 
 # This is a sandbox environment with the entire stack on one server, and should not be considered production ready.
 
+
 #TODO Prompt for ES_STACK_VERSION if not set
-ES_STACK_VERSION=${ES_STACK_VERSION}
+ES_STACK_VERSION=$0
+if [ -z "$ES_STACK_VERSION" ]; then
+  echo "Enter stack version (latest from http://elastic.co/downloads)"
+  read -p  ES_STACK_VERSION
+fi
+echo ES Stack version to install: $ES_STACK_VERSION
+OS=darwin
+BUILD=$BUILD
 
 #TODO
 #TODO Archive version directory if it exists
@@ -14,8 +22,14 @@ cd
 cd workspace/elastic-stack/
 
 # - minio
-mv stack-download stack-download-`date '+%Y-%m-%d %H:%M:%S'`
-mkdir stack-download
+if [ -d "stack-download" ]; then
+  mv stack-download stack-download-`date '+%Y-%m-%d %H:%M:%S'`
+elif [ ! -d "stack-download" ]; then
+  mkdir stack-download
+fi
+
+
+
 cd stack-download
 ./download-stack-components.sh
 echo .
@@ -28,30 +42,34 @@ for file in *zip;  do unzip $file; done;
 sleep 1
 ln -s elasticsearch-${ES_STACK_VERSION} elasticsearch
 ln -s logstash-${ES_STACK_VERSION} logstash
-ln -s filebeat-${ES_STACK_VERSION}-darwin-x86_64 filebeat
-ln -s metricbeat-${ES_STACK_VERSION}-darwin-x86_64 metricbeat
-ln -s packetbeat-${ES_STACK_VERSION}-darwin-x86_64 packetbeat
-ln -s auditbeat-${ES_STACK_VERSION}-darwin-x86_64 auditbeat
+ln -s filebeat-${ES_STACK_VERSION}-$OS-$BUILD filebeat
+ln -s metricbeat-${ES_STACK_VERSION}-$OS-$BUILD metricbeat
+ln -s packetbeat-${ES_STACK_VERSION}-$OS-$BUILD packetbeat
+ln -s auditbeat-${ES_STACK_VERSION}-$OS-$BUILD auditbeat
 ln -s heartbeat-${ES_STACK_VERSION} heartbeat
-ln -s journalbeat-${ES_STACK_VERSION}-linux-x86_64 journalbeat
+ln -s journalbeat-${ES_STACK_VERSION}-$OS-$BUILD journalbeat
 
 # Other Tools
 
 # Minio
 cd
 cd ~/workspace/elastic-stack/
-wget https://dl.minio.io/server/minio/release/darwin-amd64/minio
+wget https://dl.minio.io/server/minio/release/$OS-amd64/minio
 chmod +x minio
 
+# Filebeat runtime args TODO: move off /var/run
+cd 
+cd ~/workspace/elastic-stack
 
-cd ..
-sudo mkdir /var/run/filebeat/
+#if [ ! -d "stack-download" ]; then
+#  sudo mkdir /var/run/filebeat
+#fi
 sudo chown -Rf andrew:staff /var/run/filebeat
 
 # Minio
 cd
 cd ~/workspace/tesla-stack/
-wget https://dl.minio.io/server/minio/release/darwin-amd64/minio
+wget https://dl.minio.io/server/minio/release/$OS-amd64/minio
 chmod +x minio
 # to-run
 # ./minio server /data/minio

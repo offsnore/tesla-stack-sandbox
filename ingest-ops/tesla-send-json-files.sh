@@ -1,8 +1,7 @@
 #!/bin/bash
 for filename in /data/tesla/*/*.json; do
     for ((i=0; i <= 20; i++)); do
-	curl -X POST https://4879a9d7ab51435995831380eaf74a34.us-central1.gcp.cloud.es.io:9243/tesla-api-data/_doc/ -d  @"$filename" \
-       -u '$ELASTIC_AUTH' \
+	curl -X POST http://localhost:9200/tesla-api-data/_doc/ -d  @"$filename" \
        --header "Content-Type: application/json" >> /dev/null 2>&1
 	printf "."
     done
@@ -23,3 +22,7 @@ curl -XGET "https://4879a9d7ab51435995831380eaf74a34.us-central1.gcp.cloud.es.io
 
 
 curl -XGET "https://4879a9d7ab51435995831380eaf74a34.us-central1.gcp.cloud.es.io:9243/" -u 'elastic:LycHhr1Sn8aG555LBIrrob7B'
+
+# curl -X POST https://4879a9d7ab51435995831380eaf74a34.us-central1.gcp.cloud.es.io:9243/tesla-api-data/_doc/ -d  @"$filename" \
+
+#       -u '$ELASTIC_AUTH' \
