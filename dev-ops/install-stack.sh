@@ -21,7 +21,6 @@ BUILD=$BUILD
 cd
 cd workspace/elastic-stack/
 
-# - minio
 if [ -d "stack-download" ]; then
   mv stack-download stack-download-`date '+%Y-%m-%d %H:%M:%S'`
 elif [ ! -d "stack-download" ]; then
