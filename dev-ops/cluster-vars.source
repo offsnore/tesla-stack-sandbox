@@ -1,0 +1,9 @@
+# kill `cat /data/elasticsearch/cluster.plane-12-29-2018/cluster.plane-12-29-2018/pids/9200.pid`
+
+CLUSTER_NAME=cluster.plane-12-29-2018
+CLUSTER_DIR=/data/elasticsearch/${CLUSTER_NAME}
+DATA_DIR=/data/elasticsearch/${CLUSTER_NAME}/data
+PATH_CONFIGS=${CLUSTER_DIR}/configs
+PIDS_DIR=${CLUSTER_DIR}/${CLUSTER_NAME}/pids
+LOGS_DIR=${CLUSTER_DIR}/logs
+
