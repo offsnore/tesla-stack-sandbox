@@ -1,1 +1,0 @@
-start-es-cluster-v4.sh
