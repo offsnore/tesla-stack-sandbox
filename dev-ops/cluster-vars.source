@@ -3,6 +3,7 @@
 CLUSTER_NAME=cluster.plane-12-29-2018
 CLUSTER_DIR=/data/elasticsearch/${CLUSTER_NAME}
 DATA_DIR=/data/elasticsearch/${CLUSTER_NAME}/data
+DATA_DRIVE_DIR=/data/data_drive/elasticsearch
 PATH_CONFIGS=${CLUSTER_DIR}/configs
 PIDS_DIR=${CLUSTER_DIR}/${CLUSTER_NAME}/pids
 LOGS_DIR=${CLUSTER_DIR}/logs
