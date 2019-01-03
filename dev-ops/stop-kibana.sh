@@ -1,6 +1,6 @@
 dir=`pwd`
 cd 
-cd workspace/tesla-stack/dev-ops/
+cd workspace/elastic-stack/current/kibana
 
 #./routing_allocation-disable.sh
-kill `cat /var/run/kibana/kibana.pid`
+echo "Klling kibana at pid `cat kibana.pid`.." && kill `cat kibana.pid`
