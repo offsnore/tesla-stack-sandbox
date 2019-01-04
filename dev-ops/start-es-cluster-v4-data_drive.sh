@@ -2,11 +2,12 @@ dir=`pwd`
 cd
 
 CLUSTER_NAME=data-drive.2019-01-02
-CLUSTER_DIR=/data/elasticsearch/${CLUSTER_NAME}
-DATA_DIR=/data/data_drive/elasticsearch/${CLUSTER_NAME}/data
-PATH_CONFIGS=${CLUSTER_DIR}/configs
-PIDS_DIR=${CLUSTER_DIR}/pids
-LOGS_DIR=${CLUSTER_DIR}/logs
+DATA_DRIVE=/data/data_drive
+CLUSTER_DIR=$DATA_DRIVE/elasticsearch/$CLUSTER_NAME
+DATA_DIR=$CLUSTER_DIR/data
+PATH_CONFIGS=$CLUSTER_DIR/configs
+PIDS_DIR=$CLUSTER_DIR/pids
+LOGS_DIR=$CLUSTER_DIR/logs
 
 echo "Checking that directory path exists: $DATA_DIR"
 # Set up $DATA_DIR paths
