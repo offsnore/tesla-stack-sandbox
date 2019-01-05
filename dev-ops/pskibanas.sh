@@ -1,6 +1,7 @@
+#!/bin/bash
 cd
 cd ~/workspace/elastic-stack/current/kibana/
-echo "grepping for kibana.pid files.."
+echo "grepping for kibana.pid, kibana2.pid files.."
 
 #ps -ef | grep cat "`kibana.pid`"
 #ps -ef | grep cat "`kibana2.pid`"
@@ -14,8 +15,8 @@ if [ ! -f $KIBANA2 ]; then
   echo "No pid file found: `pwd`/$KIBANA2"
 fi
 if [ -f $KIBANA1 ]; then
-  ps -ef | grep cat "`kibana.pid`"
+  ps -ef | grep `cat kibana.pid`
 fi
 if [ -f $KIBANA2 ]; then
-  ps -ef | grep cat "`kibana2.pid`"
+  ps -ef | grep `cat kibana2.pid`
 fi
