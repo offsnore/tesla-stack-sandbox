@@ -1,7 +1,13 @@
 dir=`pwd`
 cd
 
-CLUSTER_NAME=local_drive.2019-01-05
+STACK_DIR=~/workspace/elastic-stack/current
+ES_HOME=$STACK_DIR/elasticsearch
+CLUSTER_NAME=local_data.2019-01-07
+if [ -z $ENV_CLUSTER_NAME ] ; then
+  echo "Setting cluster.name with env vare: $ENV_CLUSTER_NAME"
+  CLUSTER_NAME=$ENV_CLUSTER_NAME
+fi
 DATA_DRIVE=/data/local_drive
 CLUSTER_DIR=$DATA_DRIVE/elasticsearch/$CLUSTER_NAME
 
@@ -9,7 +15,9 @@ DATA_DIR=$CLUSTER_DIR/data
 PATH_CONFIGS=$CLUSTER_DIR/configs
 PIDS_DIR=$CLUSTER_DIR/pids
 LOGS_DIR=$CLUSTER_DIR/logs
-
+PROJECT_STACK=~/workspace/tesla-stack
+DEFAULT_CONFIGS_PATH_ES=${PROJECT_STACK}/default-configs/elasticsearch
+DEFAULT_NODE_TYPE=default.config
 NUM_HOT_NODES=1
 NUM_WARM_NODES=1
 NUM_COOL_NODES=1
@@ -50,8 +58,10 @@ if [ ! -z $PATH_CONFIGS ]; then
 fi
 
 # --- Start Elasticsearch Processes ---
-
-cd ~/workspace/elastic-stack/current/elasticsearch
+if [ -z ES_HOME ]; then 
+  cd $ES_HOME
+else cd ~/workspace/elastic-stack/current/elasticsearch
+fi
 
 # NODE 1
 NODE_NAME=node-d0
@@ -63,7 +73,8 @@ fi
 if [ ! -z $PATH_CONFIGS/$NODE_NAME  ]; then
   sudo mkdir -p $PATH_CONFIGS/$NODE_NAME
   echo "Created node config directory: $PATH_CONFIGS/$NODE_NAME"
-# TODO: Copy default configs
+  echo "Copying default configs from: $EFAULT_CONFIGS_PATH_ES/$DEFAULT_NODE_TYPE"
+  sudo cp -rf $DEFAULT_CONFIGS_PATH_ES/$DEFAULT_NODE_TYPE/* $PATH_CONFIGS/$NODE_NAME
 fi
 
 ES_JAVA_OPTS="-Xms4g -Xmx4g" ES_PATH_CONF="${PATH_CONFIGS}/${NODE_NAME}" ./bin/elasticsearch -p ${PIDS_DIR}/${NODE_NAME}.pid -E path.data=${DATA_DIR}/${NODE_NAME}  -E path.logs=${LOGS_DIR}  -E "cluster.name=${CLUSTER_NAME}" -E "node.name"=${NODE_NAME}  -d
@@ -73,6 +84,7 @@ echo "Data is at $DATA_DIR"
 echo "Configs created are ate $PATHS_CONFIG/$NODE_NAME"
 
 # NODE 2
+
 NODE_NAME=node-d1
 if [ ! -z $DATA_DIR/$NODE_NAME ]; then
   mkdir -p $DATA_DIR/$NODE_NAME
@@ -82,27 +94,40 @@ fi
 if [ ! -z $PATH_CONFIGS/$NODE_NAME  ]; then
   sudo mkdir -p $PATH_CONFIGS/$NODE_NAME
   echo "Created node config directory: $PATH_CONFIGS/$NODE_NAME"
-# TODO: Copy default configs
+  echo "Copying default configs from: $EFAULT_CONFIGS_PATH_ES/$DEFAULT_NODE_TYPE"
+  sudo cp -rf $DEFAULT_CONFIGS_PATH_ES/$DEFAULT_NODE_TYPE/* $PATH_CONFIGS/$NODE_NAME
 fi
-ES_JAVA_OPTS="-Xms2g -Xmx2g" ES_PATH_CONF="${PATH_CONFIGS}/${NODE_NAME}" ./bin/elasticsearch -E path.data=${DATA_DIR}/${NODE_NAME}  -p ${PIDS_DIR}/${NODE_NAME}.pid -E path.logs=${LOGS_DIR} -E "cluster.name=${CLUSTER_NAME}"  -E "node.name"=${NODE_NAME}   -d
+if [ -z ES_HOME ]; then 
+  cd $ES_HOME
+else cd ~/workspace/elastic-stack/current/elasticsearch
+fi
+
+ES_JAVA_OPTS="-Xms2g -Xmx2g" ES_PATH_CONF="${PATH_CONFIGS}/${NODE_NAME}" ./bin/elasticsearch -E path.data=${DATA_DIR}/${NODE_NAME}  -p ${PIDS_DIR}/${NODE_NAME}.pid -E path.logs=${LOGS_DIR} -E cluster.name=${CLUSTER_NAME}  -E "node.name"=${NODE_NAME} -d
 echo "Started Elasticsearch $NODE_NAME"
 echo "Logs are at $LOGS_DIR"
 echo "Data is at $DATA_DIR"
 echo "Configs created are ate $PATHS_CONFIG/$NODE_NAME"
 
 # NODE 3
+
 NODE_NAME=node-d2
 if [ ! -z $DATA_DIR/$NODE_NAME ]; then
   mkdir -p $DATA_DIR/$NODE_NAME
   echo "Created node data directory: $DATA_DIR/$NODE_NAME"
+  echo "Copying default configs from: $EFAULT_CONFIGS_PATH_ES/$DEFAULT_NODE_TYPE"
+  sudo cp -rf $DEFAULT_CONFIGS_PATH_ES/$DEFAULT_NODE_TYPE/* $PATH_CONFIGS/$NODE_NAME
 fi
 # Create node config directories, if they don't exist
 if [ ! -z $PATH_CONFIGS/$NODE_NAME  ]; then
   sudo mkdir -p $PATH_CONFIGS/$NODE_NAME
   echo "Created node config directory: $PATH_CONFIGS/$NODE_NAME"
-# TODO: Copy default configs
 fi
-ES_JAVA_OPTS="-Xms2g -Xmx2g" ES_PATH_CONF="${PATH_CONFIGS}/${NODE_NAME}" ./bin/elasticsearch -p ${PIDS_DIR}/${NODE_NAME}.pid -E path.data=${DATA_DIR}/${NODE_NAME}  -E path.logs=${LOGS_DIR} -E "node.name"=${NODE_NAME} -E "cluster.name=${CLUSTER_NAME}" -d
+if [ -z ES_HOME ]; then 
+  cd $ES_HOME
+else cd ~/workspace/elastic-stack/current/elasticsearch
+fi
+echo "HERE `pwd`"
+ES_JAVA_OPTS="-Xms2g -Xmx2g" ES_PATH_CONF="${PATH_CONFIGS}/${NODE_NAME}" ./bin/elasticsearch -p ${PIDS_DIR}/${NODE_NAME}.pid -E path.data=${DATA_DIR}/${NODE_NAME}  -E path.logs=${LOGS_DIR} -E node.name=${NODE_NAME} -E "cluster.name=${CLUSTER_NAME}" -d
 echo "Started Elasticsearch $NODE_NAME" 
 echo "Logs are at $LOGS_DIR"
 echo "Data is at $DATA_DIR"

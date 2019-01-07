@@ -1,1 +1,1 @@
-start-es-cluster-v5-local_drive.sh
+start-es-cluster-v6-local_drive.sh
