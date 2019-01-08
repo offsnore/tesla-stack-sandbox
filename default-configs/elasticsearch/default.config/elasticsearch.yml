@@ -14,36 +14,35 @@
 #
 # Use a descriptive name for your cluster:
 #
-cluster.name: ${CLUSTER_NAME}
-# -E path.data=${DATA_DRIVE}/node0 -p ${DATA_DRIVE}/pid/9200 -E path.logs=${LOGS_DIR}/node0 -E "node.attr.my_node_type=hot"   -E "node.name=node-0-hot" -E "node.master=false" -E "cluster.name=${CLUSTER_NAME}" -d
+# cluster.name: ${CLUSTER_NAME}
 #
 # ------------------------------------ Node ------------------------------------
 #
 # Use a descriptive name for the node:
 #
-node.name: node-0-hot
+# node.name: node-0-hot
 #
 # Add custom attributes to the node:
 #
 #node.attr.rack: r1
-node.attr.node_type=hot
-node.attr.storage_type=internal
+node.attr.node_type: hot
+node.attr.storage_type: internal
 #
 # ----------------------------------- Paths ------------------------------------
 #
 # Path to directory where to store the data (separate multiple locations by comma):
 #
-path.data: ${DATA_DRIVE}/${CLUSTER_NAME}
+# path.data:
 #
 # Path to log files:
 #
-path.logs: ${LOGS_DIR}/node0
+# path.logs: 
 #
 # ----------------------------------- Memory -----------------------------------
 #
 # Lock the memory on startup:
 #
-bootstrap.memory_lock: true
+# bootstrap.memory_lock: true
 #
 # Make sure that the heap size is set to about half the memory available
 # on the system and that the owner of the process is allowed to use this
