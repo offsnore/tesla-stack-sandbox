@@ -1,1 +1,1 @@
-start-es-cluster-v5-data_drive.sh
+start-es-cluster-v6-data_drive.sh
