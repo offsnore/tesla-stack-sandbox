@@ -1,10 +1,22 @@
-# kill `cat /data/elasticsearch/cluster.plane-12-29-2018/cluster.plane-12-29-2018/pids/9200.pid`
+# Environment variables needed in bash instance before running any stack scripts.
+STACK_DIR=~/workspace/elastic-stack/current
+ES_HOME=$STACK_DIR/elasticsearch
+#CLUSTER_NAME=local_data.2019-01-07
+CLUSTER_NAME=$ENV_CLUSTER_NAME
+DATA_DRIVE=/data/local_drive
+CLUSTER_DIR=$DATA_DRIVE/elasticsearch/$CLUSTER_NAM
 
-CLUSTER_NAME=cluster.plane-12-29-2018
-CLUSTER_DIR=/data/elasticsearch/${CLUSTER_NAME}
-DATA_DIR=/data/elasticsearch/${CLUSTER_NAME}/data
-DATA_DRIVE_DIR=/data/data_drive/elasticsearch
-PATH_CONFIGS=${CLUSTER_DIR}/configs
-PIDS_DIR=${CLUSTER_DIR}/${CLUSTER_NAME}/pids
-LOGS_DIR=${CLUSTER_DIR}/logs
+DATA_DIR=$CLUSTER_DIR/data
+PATH_CONFIGS=$CLUSTER_DIR/configs
+PIDS_DIR=$CLUSTER_DIR/pids
+LOGS_DIR=$CLUSTER_DIR/logs
+PROJECT_STACK=~/workspace/tesla-stack
+DEFAULT_CONFIGS_PATH_ES=${PROJECT_STACK}/default-configs/elasticsearch
+DEFAULT_NODE_TYPE=default.config
+NUM_HOT_NODES=1
+NUM_WARM_NODES=1
+NUM_COOL_NODES=1
+NODE_HEAP_GB=4
 
+NODE_NAME=node0
+NODE_HEAP_GB=2
