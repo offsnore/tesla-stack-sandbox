@@ -1,8 +1,10 @@
 # Environment variables needed in bash instance before running any stack scripts.
 STACK_DIR=~/workspace/elastic-stack/current
 ES_HOME=$STACK_DIR/elasticsearch
-#CLUSTER_NAME=local_data.2019-01-07
-CLUSTER_NAME=$ENV_CLUSTER_NAME
+CLUSTER_NAME=local_data.2019-01-07
+CLUSTER_NAME_LOCAL=local_data.2019-01-09
+CLUSTER_NAME_DATA_DRIVE=data_drive.2019-01-09
+#CLUSTER_NAME=$ENV_CLUSTER_NAME
 DATA_DRIVE=/data/local_drive
 CLUSTER_DIR=$DATA_DRIVE/elasticsearch/$CLUSTER_NAM
 
