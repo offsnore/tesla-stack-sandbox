@@ -4,7 +4,7 @@ cd
 STACK_DIR=~/workspace/elastic-stack/current
 PROJECT_STACK=~/workspace/tesla-stack
 ES_HOME=$STACK_DIR/elasticsearch
-CLUSTER_NAME=data_drive.2019-01-08
+CLUSTER_NAME=data_drive.2019-01-09
 
 #if [ -z $ENV_CLUSTER_NAME ] ; then
 #  echo "Setting cluster.name with env vare: $ENV_CLUSTER_NAME"
