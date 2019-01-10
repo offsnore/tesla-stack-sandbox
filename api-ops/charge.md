@@ -2,10 +2,10 @@
 
 # Request - Headers
 
-GET /api/1/vehicles/***REMOVED***/data_request/charge_state HTTP/1.1
+GET /api/1/vehicles/33843057077253004/data_request/charge_state HTTP/1.1
 client_id: 81527cff06843c8634fdc09e8ac0abefb46ac849f38fe1e431c2ef2106796384
 client_secret: c7257eb71a564034f9419ee651c7d0e5f7aa6bfbd18bafb5c5c033b093bb2fa3
-Authorization: Bearer "${TESLA_API_TOKEN}"
+Authorization: Bearer fe0e4f4912b9e258f707c79fad4b7db11a72098a3ed133163bff8d2806d68346
 Host: owner-api.teslamotors.com
 Connection: close
 User-Agent: Paw/3.1.5 (Macintosh; OS X/10.14.1) GCDHTTPRequest
