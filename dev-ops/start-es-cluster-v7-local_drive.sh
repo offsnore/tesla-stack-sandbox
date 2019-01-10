@@ -4,15 +4,13 @@ cd
 STACK_DIR=~/workspace/elastic-stack/current
 PROJECT_STACK=~/workspace/tesla-stack
 ES_HOME=$STACK_DIR/elasticsearch
-CLUSTER_NAME=local_drive.2019-01-09
 
-#if [ -z $ENV_CLUSTER_NAME ] ; then
-#  echo "Setting cluster.name with env vare: $ENV_CLUSTER_NAME"
-#  CLUSTER_NAME=$ENV_CLUSTER_NAME
-#fi
+if [  -z $CLUSTER_NAME_LOCAL ]; then
+  read -p "CLUSTER_NAME_LOCAL not set, please enter(last default local_drive.2019-01-09): " CLUSTER_NAME_LOCAL
+fi
 
 DATA_DRIVE=/data/local_drive
-CLUSTER_DIR=$DATA_DRIVE/elasticsearch/$CLUSTER_NAME
+CLUSTER_DIR=$DATA_DRIVE/elasticsearch/$CLUSTER_NAME_LOCAL
 
 DATA_DIR=$CLUSTER_DIR/data
 PATH_CONFIGS=$CLUSTER_DIR/configs
@@ -71,7 +69,7 @@ else cd ~/workspace/elastic-stack/current/elasticsearch
 fi
 
 # NODE 1
-NODE_NAME=node-d0
+NODE_NAME=node-0
 NODE_HEAP_GB=4
 NODE_TYPE=$HOT_NODE_TYPE
 if [ ! -z $DATA_DIR/$NODE_NAME ]; then
@@ -99,7 +97,8 @@ sudo chown -R andrew:wheel ${PIDS_DIR}
 
 
 
-ES_JAVA_OPTS="-Xms4g -Xmx4g" ES_PATH_CONF="${PATH_CONFIGS}/${NODE_NAME}" ./bin/elasticsearch -p ${PIDS_DIR}/${NODE_NAME}.pid -E path.data=${DATA_DIR}/${NODE_NAME}  -E path.logs=${LOGS_DIR}/$NODE_NAME  -E "cluster.name=${CLUSTER_NAME}" -E node.name=${NODE_NAME}  -d
+echo "Starting Elasticsearch node ${NODE_NAME} in cluster ${CLUSTER_NAME_LOCAL}"
+ES_JAVA_OPTS="-Xms4g -Xmx4g" ES_PATH_CONF="${PATH_CONFIGS}/${NODE_NAME}" ./bin/elasticsearch -p ${PIDS_DIR}/${NODE_NAME}.pid -E path.data=${DATA_DIR}/${NODE_NAME}  -E path.logs=${LOGS_DIR}/$NODE_NAME  -E "cluster.name=${CLUSTER_NAME_LOCAL}" -E node.name=${NODE_NAME}  -d
 echo "Started Elasticsearch $NODE_NAME"
 echo "Logs are at $LOGS_DIR"
 echo "Data is at $DATA_DIR"
@@ -107,7 +106,7 @@ echo "Configs created are at $PATHS_CONFIG/$NODE_NAME"
 
 # NODE 2
 
-NODE_NAME=node-d1
+NODE_NAME=node-1
 NODE_HEAP_GB=2
 NODE_TYPE=$COOL_NODE_TYPE
 if [ ! -z $DATA_DIR/$NODE_NAME ]; then
@@ -135,7 +134,8 @@ sudo chown -R andrew:wheel ${DATA_DIR}
 sudo chown -R andrew:wheel ${LOGS_DIR}
 sudo chown -R andrew:wheel ${PIDS_DIR}
 
-ES_JAVA_OPTS="-Xms2g -Xmx2g" ES_PATH_CONF="${PATH_CONFIGS}/${NODE_NAME}" ./bin/elasticsearch -E path.data=${DATA_DIR}/${NODE_NAME}  -p ${PIDS_DIR}/${NODE_NAME}.pid -E path.logs=${LOGS_DIR}/$NODE_NAME -E cluster.name=${CLUSTER_NAME}  -E node.name=${NODE_NAME} -d
+echo "Starting Elasticsearch node ${NODE_NAME} in cluster ${CLUSTER_NAME_LOCAL}"
+ES_JAVA_OPTS="-Xms2g -Xmx2g" ES_PATH_CONF="${PATH_CONFIGS}/${NODE_NAME}" ./bin/elasticsearch -E path.data=${DATA_DIR}/${NODE_NAME}  -p ${PIDS_DIR}/${NODE_NAME}.pid -E path.logs=${LOGS_DIR}/$NODE_NAME -E "cluster.name=${CLUSTER_NAME_LOCAL}"  -E node.name=${NODE_NAME} -d
 echo "Started Elasticsearch $NODE_NAME"
 echo "Logs are at $LOGS_DIR"
 echo "Data is at $DATA_DIR"
@@ -143,7 +143,7 @@ echo "Configs created are ate $PATHS_CONFIG/$NODE_NAME"
 
 # NODE 3
 
-NODE_NAME=node-d2
+NODE_NAME=node-2
 NODE_HEAP_GB=2
 NODE_TYPE=$COOL_NODE_TYPE
 if [ ! -z $DATA_DIR/$NODE_NAME ]; then
@@ -170,7 +170,9 @@ sudo chown -R andrew:wheel ${DATA_DIR}
 sudo chown -R andrew:wheel ${LOGS_DIR}
 sudo chown -R andrew:wheel ${PIDS_DIR}
 
-ES_JAVA_OPTS="-Xms1g -Xmx1g" ES_PATH_CONF="${PATH_CONFIGS}/${NODE_NAME}" ./bin/elasticsearch -p ${PIDS_DIR}/${NODE_NAME}.pid -E path.data=${DATA_DIR}/${NODE_NAME}  -E path.logs=${LOGS_DIR}/$NODE_NAME -E node.name=${NODE_NAME} -E cluster.name=${CLUSTER_NAME} -d
+
+echo "Starting Elasticsearch node ${NODE_NAME} in cluster ${CLUSTER_NAME_LOCAL}"
+ES_JAVA_OPTS="-Xms1g -Xmx1g" ES_PATH_CONF="${PATH_CONFIGS}/${NODE_NAME}" ./bin/elasticsearch -p ${PIDS_DIR}/${NODE_NAME}.pid -E path.data=${DATA_DIR}/${NODE_NAME}  -E path.logs=${LOGS_DIR}/$NODE_NAME -E node.name=${NODE_NAME} -E cluster.name=${CLUSTER_NAME_LOCAL} -d
 echo "Started Elasticsearch $NODE_NAME" 
 echo "Logs are at $LOGS_DIR"
 echo "Data is at $DATA_DIR"

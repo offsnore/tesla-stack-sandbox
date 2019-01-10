@@ -1,24 +1,25 @@
+#!/bin/bash
+# Elasticsearch cluster start script: DATA_DRIVE (external drive)
+
 dir=`pwd`
 cd
 
 STACK_DIR=~/workspace/elastic-stack/current
 PROJECT_STACK=~/workspace/tesla-stack
 ES_HOME=$STACK_DIR/elasticsearch
-#CLUSTER_NAME=data_drive.2019-01-09
-if [ ! -z "$CLUSTER_NAME_LOCAL" ]; then
-  CLUSTER_NAME=$CLUSTER_NAME_LOCAL
-else 
-  read -p "CLUSTER_NAME not set, please enter:(last default: data_drive.2019-01-09 " CLUSTER_NAME
-  CLUSTER_NAME_LOCAL = $CLUSTER_NAME
-fi
+#CLUSTER_NAME_DATA_DRIVE=data_drive.2019-01-09
 
 #if [ -z $ENV_CLUSTER_NAME ] ; then
 #  echo "Setting cluster.name with env vare: $ENV_CLUSTER_NAME"
 #  CLUSTER_NAME=$ENV_CLUSTER_NAME
 #fi
 
+if [ -z "$CLUSTER_NAME_DATA_DRIVE" ]; then
+  read -p "CLUSTER_NAME_DATA_DRIVE not set, please enter(last default - data_drive.2019-01-09):  " CLUSTER_NAME_DATA_DRIVE
+fi
+
 DATA_DRIVE=/data/data_drive
-CLUSTER_DIR=$DATA_DRIVE/elasticsearch/$CLUSTER_NAME
+CLUSTER_DIR=$DATA_DRIVE/elasticsearch/$CLUSTER_NAME_DATA_DRIVE
 
 DATA_DIR=$CLUSTER_DIR/data
 PATH_CONFIGS=$CLUSTER_DIR/configs
@@ -26,7 +27,7 @@ PIDS_DIR=$CLUSTER_DIR/pids
 LOGS_DIR=$CLUSTER_DIR/logs
 
 DEFAULT_CONFIGS_PATH_ES=${PROJECT_STACK}/default-configs/elasticsearch-data_drive
-DEFAULT_NODE_TYPE=default.config
+DEFAULT_NODE_TYPE=config.default
 HOT_NODE_TYPE=config.hot
 WARM_NODE_TYPE=config.warm
 COOL_NODE_TYPE=config.cool
@@ -104,8 +105,8 @@ sudo chown -R andrew:wheel ${LOGS_DIR}
 sudo chown -R andrew:wheel ${PIDS_DIR}
 
 
-
-ES_JAVA_OPTS="-Xms4g -Xmx4g" ES_PATH_CONF="${PATH_CONFIGS}/${NODE_NAME}" ./bin/elasticsearch -p ${PIDS_DIR}/${NODE_NAME}.pid -E path.data=${DATA_DIR}/${NODE_NAME}  -E path.logs=${LOGS_DIR}/$NODE_NAME  -E "cluster.name=${CLUSTER_NAME_LOCAL}" -E node.name=${NODE_NAME}  -d
+echo "Starting Elasticsearch node ${NODE_NAME} in cluster ${CLUSTER_NAME_DATA_DRIVE}"
+ES_JAVA_OPTS="-Xms4g -Xmx4g" ES_PATH_CONF="${PATH_CONFIGS}/${NODE_NAME}" ./bin/elasticsearch -p ${PIDS_DIR}/${NODE_NAME}.pid -E path.data=${DATA_DIR}/${NODE_NAME}  -E path.logs=${LOGS_DIR}/$NODE_NAME  -E "cluster.name=${CLUSTER_NAME_DATA_DRIVE}" -E node.name=${NODE_NAME}  -d
 echo "Started Elasticsearch $NODE_NAME"
 echo "Logs are at $LOGS_DIR"
 echo "Data is at $DATA_DIR"
@@ -141,11 +142,12 @@ sudo chown -R andrew:wheel ${DATA_DIR}
 sudo chown -R andrew:wheel ${LOGS_DIR}
 sudo chown -R andrew:wheel ${PIDS_DIR}
 
-ES_JAVA_OPTS="-Xms2g -Xmx2g" ES_PATH_CONF="${PATH_CONFIGS}/${NODE_NAME}" ./bin/elasticsearch -E path.data=${DATA_DIR}/${NODE_NAME}  -p ${PIDS_DIR}/${NODE_NAME}.pid -E path.logs=${LOGS_DIR}/$NODE_NAME -E cluster.name=${CLUSTER_NAME_LOCAL}  -E node.name=${NODE_NAME} -d
+echo "Starting Elasticsearch node ${NODE_NAME} in cluster ${CLUSTER_NAME_DATA_DRIVE}"
+ES_JAVA_OPTS="-Xms2g -Xmx2g" ES_PATH_CONF="${PATH_CONFIGS}/${NODE_NAME}" ./bin/elasticsearch -E path.data=${DATA_DIR}/${NODE_NAME}  -p ${PIDS_DIR}/${NODE_NAME}.pid -E path.logs=${LOGS_DIR}/$NODE_NAME -E cluster.name=${CLUSTER_NAME_DATA_DRIVE}  -E node.name=${NODE_NAME} -d
 echo "Started Elasticsearch $NODE_NAME"
 echo "Logs are at $LOGS_DIR"
 echo "Data is at $DATA_DIR"
-echo "Configs created are at $PATHS_CONFIG/$NODE_NAME"
+echo "Configs created are ate $PATHS_CONFIG/$NODE_NAME"
 
 # NODE 3
 
@@ -176,10 +178,11 @@ sudo chown -R andrew:wheel ${DATA_DIR}
 sudo chown -R andrew:wheel ${LOGS_DIR}
 sudo chown -R andrew:wheel ${PIDS_DIR}
 
-ES_JAVA_OPTS="-Xms1g -Xmx1g" ES_PATH_CONF="${PATH_CONFIGS}/${NODE_NAME}" ./bin/elasticsearch -p ${PIDS_DIR}/${NODE_NAME}.pid -E path.data=${DATA_DIR}/${NODE_NAME}  -E path.logs=${LOGS_DIR}/$NODE_NAME -E node.name=${NODE_NAME} -E cluster.name=${CLUSTER_NAME_LOCAL} -d
+echo "Starting Elasticsearch node ${NODE_NAME} in cluster ${CLUSTER_NAME_DATA_DRIVE}"
+ES_JAVA_OPTS="-Xms1g -Xmx1g" ES_PATH_CONF="${PATH_CONFIGS}/${NODE_NAME}" ./bin/elasticsearch -p ${PIDS_DIR}/${NODE_NAME}.pid -E path.data=${DATA_DIR}/${NODE_NAME}  -E path.logs=${LOGS_DIR}/$NODE_NAME -E node.name=${NODE_NAME} -E cluster.name=${CLUSTER_NAME_DATA_DRIVE} -d
 echo "Started Elasticsearch $NODE_NAME" 
 echo "Logs are at $LOGS_DIR"
 echo "Data is at $DATA_DIR"
 echo "Configs created are ate $PATHS_CONFIG/$NODE_NAME"
 echo "Creating alias to tail all elasticsearch logs: tail-elasticsaerch-logs"
-alias tail-elasticsearch-logs="tail -F $DATA_DIR/*/data_drive.2019-01-08.log"
+alias tail-elasticsearch-logs-local="tail -F $DATA_DIR/*/local_drive.2019-01-08.log"
