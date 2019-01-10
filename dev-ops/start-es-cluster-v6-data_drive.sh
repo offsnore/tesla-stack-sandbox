@@ -19,11 +19,11 @@ PATH_CONFIGS=$CLUSTER_DIR/configs
 PIDS_DIR=$CLUSTER_DIR/pids
 LOGS_DIR=$CLUSTER_DIR/logs
 
-DEFAULT_CONFIGS_PATH_ES=${PROJECT_STACK}/default-configs/elasticsearch
+DEFAULT_CONFIGS_PATH_ES=${PROJECT_STACK}/default-configs/elasticsearch-data_drive
 DEFAULT_NODE_TYPE=default.config
-HOT_NODE_TYPE=hot.config
-WARM_NODE_TYPE=warm.config
-COOL_NODE_TYPE=cool.config
+HOT_NODE_TYPE=config.hot
+WARM_NODE_TYPE=config.warm
+COOL_NODE_TYPE=config.cool
 NUM_HOT_NODES=1
 NUM_WARM_NODES=1
 NUM_COOL_NODES=1
