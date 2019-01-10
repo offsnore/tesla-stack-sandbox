@@ -1,1 +1,1 @@
-start-es-cluster-v7-local_drive.sh
+start-es-cluster-v8-local_drive.sh

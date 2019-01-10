@@ -23,10 +23,10 @@ PIDS_DIR=${DATA_DIR}/${CLUSTER_NAME_LOCAL}/pids
 if [ -z "$(ls -A $PIDS_DIR/)" ]; then
    echo "No pid files found for cluster $CLUSTER_NAME_LOCAL at $PIDS_DIR" 
 else
-   for f in ${PIDS_DIR}/*.pid; do kill `cat $f` && echo "killed Elasticsearch at pid $f"; done
+   for f in ${PIDS_DIR}/*.pid; do kill `cat $f` && echo "Killed Elasticsearch at pid $f"; done
    echo "Killed pids for ${CLUSTER_NAME_LOCAL} found at $CLUSTER_DIR"
 fi
-# old working - for f in ${DATA_DIR}/${CLUSTER_NAME_LOCAL}/pids/*.pid; do kill `cat $f` && echo "killed Elasticsearch at pid $f"; done
+# old working - for f in ${DATA_DIR}/${CLUSTER_NAME_LOCAL}/pids/*.pid; do kill `cat $f` && echo "Killed Elasticsearch at pid $f"; done
 
 # DATA_DRIVE
 
@@ -38,6 +38,6 @@ PIDS_DIR=${DATA_DIR}/${CLUSTER_NAME_DATA_DRIVE}/pids
 if [ -z "$(ls -A $PIDS_DIR)" ]; then
    echo "No pid files found for cluster $CLUSTER_NAME at $PIDS_DIR"
 else
-   for f in ${PIDS_DIR}/*.pid; do kill `cat $f` && echo "killed Elasticsearch at pid $f"; done
-for f in ${PIDS_DIR}/*.pid; do kill `cat $f` && echo "killed Elasticsearch at pid $f"; done
+   for f in ${PIDS_DIR}/*.pid; do kill `cat $f` && echo "Killed Elasticsearch at pid $f"; done
+for f in ${PIDS_DIR}/*.pid; do kill `cat $f` && echo "Killed Elasticsearch at pid $f"; done
 fi

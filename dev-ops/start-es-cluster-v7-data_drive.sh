@@ -1,18 +1,18 @@
 #!/bin/bash
 # Start script for external cluster/data drive
 
-cd ~/workspace/tesla-stack/dev-ops
-source ./cluster-vars.source
 dir=`pwd`
 
 STACK_DIR=~/workspace/elastic-stack/current
 PROJECT_STACK=~/workspace/tesla-stack
 ES_HOME=$STACK_DIR/elasticsearch
-#CLUSTER_NAME_DATA_DRIVE=data_drive.2019-01-09
+
+cd $PROJECT_STACK/dev-ops
+source ./cluster-vars.source
 
 
 echo "Does this exist?CLUSTER_NAME_DATA_DRIVE:  $CLUSTER_NAME_DATA_DRIVE" 
-if [  -z "$CLUSTER_NAME_DATA_DRIVE" ]; then
+if [  -z $CLUSTER_NAME_DATA_DRIVE ]; then
   read -p "CLUSTER_NAME_DATA_DRIVE not set, please enter(last default - data_drive.2019-01-09):  " CLUSTER_NAME_DATA_DRIVE
 fi
 
@@ -23,27 +23,10 @@ DATA_DIR=$CLUSTER_DIR/data
 PATH_CONFIGS=$CLUSTER_DIR/configs
 PIDS_DIR=$CLUSTER_DIR/pids
 LOGS_DIR=$CLUSTER_DIR/logs
-LOGS_KIBANA=$LOGS_DIR/kibana
-LOGS_LOGSTASH=$LOGS_DIR/logstash
-LOGS_BEATS=$LOGS_DIR/beats
+LOGS_DIR_KIBANA=$LOGS_DIR/kibana
+LOGS_DIR_LOGSTASH=$LOGS_DIR/logstash
+LOGS_DIR_BEATS=$LOGS_DIR/beats
 
-
-
-
-if [ ! -f $KIBANA_LOGS_DIR ] ; then
-  sudo mkdir -p $KIBANA_LOGS_DIR
-  echo "Created Kibana logs directorty
-fi
-
-if [ ! -f $LOGSTASH_LOGS_DIR ] ; then
-  sudo mkdir -p $LOGSTASH_LOGS_DIR
-  echo "Created Logstash logs directory
-fi
-
-if [ ! -f $BEATS_LOGS_DIR ] ; then
-  sudo mkdir -p $BEATS_LOGS_DIR
-  echo "Created Beatsh logs directory
-fi
 
 DEFAULT_CONFIGS_PATH_ES=${PROJECT_STACK}/default-configs/elasticsearch-data_drive
 DEFAULT_NODE_TYPE=config.default
@@ -79,6 +62,22 @@ if [ ! -z $PIDS_DIR ]; then
   echo "Created pids directory: $PIDS_DIR"
 fi
 
+echo "Creating Kibana logs directory: $KIBANA_LOGS_DIR"
+if [ ! -f $KIBANA_LOGS_DIR ] ; then
+  sudo mkdir -p $LOGS_DIR_KIBANA
+  echo "Created Kibana logs directorty: `ls  $LOGS_DIR_KIBANA`"
+fi
+
+echo "Creating Kibana logs directory: $LOGS_DIRLOGSTASHR"
+if [ ! -f $LOGSTASH_LOGS_DIR ] ; then
+  sudo mkdir -p $LOGSTASH_LOGS_DIR
+  echo "Created Logstash logs directory: `ls $LOGS_DIR_LOGSTASH`"
+fi
+echo "Creating Beats logs directory: $LOGS_DIR_BEATS"
+if [ ! -f $BEATS_LOGS_DIR ] ; then
+  sudo mkdir -p $BEATS_LOGS_DIR
+  echo "Created Beatsh logs directory: `ls $LOGS_DIR_BEATS`"
+fi
 
 # Create Configs directory
 # Todo: need to copy in defaults, else throw immediate exception
@@ -110,7 +109,6 @@ if [ ! -z $PATH_CONFIGS/$NODE_NAME  ]; then
   echo "Created node config directory: $PATH_CONFIGS/$NODE_NAME"
   echo "Copying default configs from: $DEFAULT_CONFIGS_PATH_ES/$NODE_TYPE"
   if [ ! -f $PATH_CONFIGS/$NODE_NAME/elasticsearch.yml ]; then 
-    echo "HERE $PATH_CONFIGS/$NODE_NAME/elasticsearch.yml better not exist!"
     sudo cp -rf $DEFAULT_CONFIGS_PATH_ES/$NODE_TYPE/* $PATH_CONFIGS/$NODE_NAME
   fi
 fi
