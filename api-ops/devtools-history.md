@@ -28,7 +28,7 @@ PUT /tesla-wake-history-000001
 
 POST tesla-wake-history/_doc
 {
-  "id": "${VEHICLE_ID}" ,
+  "id": ${VEHICLE_ID},
   "user_id": 456477,
   "vehicle_id": 547836570,
   "vin": "5YJ3E1EB3JF055639",
@@ -41,7 +41,7 @@ POST tesla-wake-history/_doc
   ],
   "state": "asleep",
   "in_service": false,
-  "id_s": ""${VEHICLE_ID}" ",
+  "id_s": "${VEHICLE_ID}",
   "calendar_enabled": true,
   "api_version": 4,
   "backseat_token": null,

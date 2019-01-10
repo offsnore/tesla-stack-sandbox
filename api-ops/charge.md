@@ -2,7 +2,7 @@
 
 # Request - Headers
 
-GET /api/1/vehicles/"${VEHICLE_ID}" /data_request/charge_state HTTP/1.1
+GET /api/1/vehicles/${VEHICLE_ID}/data_request/charge_state HTTP/1.1
 client_id: "${TESLA_API_CLIENT_ID}"
 client_secret: "${TESLA_API_CLIENT_SECRET}"
 Authorization: Bearer "${TESLA_API_TOKEN}"

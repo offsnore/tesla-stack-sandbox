@@ -2,7 +2,7 @@
 
 # Request - Headers
 ```
-POST /api/1/vehicles/"${VEHICLE_ID}" /wake_up HTTP/1.1
+POST /api/1/vehicles/${VEHICLE_ID}/wake_up HTTP/1.1
 client_id: "${TESLA_API_CLIENT_ID}"
 client_secret: "${TESLA_API_CLIENT_SECRET}"
 Authorization: Bearer "${TESLA_API_TOKEN}"
@@ -32,10 +32,10 @@ X-Request-Id: 24489509-8797-4345-87c6-9726902e6075
 X-Runtime: 1.234024
 X-Frame-Options: SAMEORIGIN
 
-{"response":{"id":"${VEHICLE_ID}" ,"user_id":456477,"vehicle_id":547836570,"vin":"5YJ3E1EB3JF055639","display_name":"BFR","option_codes":"AD15,MDL3,PBSB,RENA,BT37,ID3W,RF3G,S3PB,DRLH,DV2W,W39B,APF0,COUS,BC3B,CH07,PC30,FC3P,FG31,GLFR,HL31,HM31,IL31,LTPB,MR31,FM3B,RS3H,SA3P,STCP,SC04,SU3C,T3CA,TW00,TM00,UT3P,WR00,AU3P,APH3,AF00,ZCST,MI00,CDM0","color":null,"tokens":["4d2caefa9d6606ef","ec0a41b8c53f7b7a"],"state":"asleep","in_service":false,"id_s":""${VEHICLE_ID}" ","calendar_enabled":true,"api_version":4,"backseat_token":null,"backseat_token_updated_at":null}}
+{"response":{"id":${VEHICLE_ID},"user_id":456477,"vehicle_id":547836570,"vin":"5YJ3E1EB3JF055639","display_name":"BFR","option_codes":"AD15,MDL3,PBSB,RENA,BT37,ID3W,RF3G,S3PB,DRLH,DV2W,W39B,APF0,COUS,BC3B,CH07,PC30,FC3P,FG31,GLFR,HL31,HM31,IL31,LTPB,MR31,FM3B,RS3H,SA3P,STCP,SC04,SU3C,T3CA,TW00,TM00,UT3P,WR00,AU3P,APH3,AF00,ZCST,MI00,CDM0","color":null,"tokens":["4d2caefa9d6606ef","ec0a41b8c53f7b7a"],"state":"asleep","in_service":false,"id_s":"${VEHICLE_ID}","calendar_enabled":true,"api_version":4,"backseat_token":null,"backseat_token_updated_at":null}}
 {
   "response": {
-    "id": "${VEHICLE_ID}" ,
+    "id": ${VEHICLE_ID},
     "user_id": 456477,
     "vehicle_id": 547836570,
     "vin": "5YJ3E1EB3JF055639",
@@ -48,7 +48,7 @@ X-Frame-Options: SAMEORIGIN
     ],
     "state": "asleep",
     "in_service": false,
-    "id_s": ""${VEHICLE_ID}" ",
+    "id_s": "${VEHICLE_ID}",
     "calendar_enabled": true,
     "api_version": 4,
     "backseat_token": null,
@@ -61,7 +61,7 @@ Mock in kibana:
 ```
 PUT tesla-wake-history/_doc/1
 {
-  "id": "${VEHICLE_ID}" ,
+  "id": ${VEHICLE_ID},
   "user_id": 456477,
   "vehicle_id": 547836570,
   "vin": "5YJ3E1EB3JF055639",
@@ -74,7 +74,7 @@ PUT tesla-wake-history/_doc/1
   ],
   "state": "asleep",
   "in_service": false,
-  "id_s": ""${VEHICLE_ID}" ",
+  "id_s": "${VEHICLE_ID}",
   "calendar_enabled": true,
   "api_version": 4,
   "backseat_token": null,
@@ -85,7 +85,7 @@ PUT tesla-wake-history/_doc/1
 ```
 PUT tesla-wake-history/_doc/1
 {
-  "id": "${VEHICLE_ID}" ,
+  "id": ${VEHICLE_ID},
   "user_id": 456477,
   "vehicle_id": 547836570,
   "vin": "5YJ3E1EB3JF055639",
@@ -98,7 +98,7 @@ PUT tesla-wake-history/_doc/1
   ],
   "state": "asleep",
   "in_service": false,
-  "id_s": ""${VEHICLE_ID}" ",
+  "id_s": "${VEHICLE_ID}",
   "calendar_enabled": true,
   "api_version": 4,
   "backseat_token": null,
@@ -109,7 +109,7 @@ PUT tesla-wake-history/_doc/1
 # curl request (missing token)
 
 ```
-curl -X "POST" "https://owner-api.teslamotors.com/api/1/vehicles/"${VEHICLE_ID}" /wake_up" \
+curl -X "POST" "https://owner-api.teslamotors.com/api/1/vehicles/${VEHICLE_ID}/wake_up" \
      -H 'client_id: "${TESLA_API_CLIENT_ID}"' \
      -H 'client_secret: "${TESLA_API_CLIENT_SECRET}"' \
      -H 'Authorization: Bearer TOKEN'
