@@ -1,6 +1,6 @@
 dir=`pwd`
+source cluster-vars.source
 cd
-
 STACK_DIR=~/workspace/elastic-stack/current
 PROJECT_STACK=~/workspace/tesla-stack
 ES_HOME=$STACK_DIR/elasticsearch

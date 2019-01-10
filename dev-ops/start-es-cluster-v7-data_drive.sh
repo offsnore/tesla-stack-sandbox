@@ -1,20 +1,18 @@
 #!/bin/bash
-# Elasticsearch cluster start script: DATA_DRIVE (external drive)
+# Start script for external cluster/data drive
 
+cd ~/workspace/tesla-stack/dev-ops
+source ./cluster-vars.source
 dir=`pwd`
-cd
 
 STACK_DIR=~/workspace/elastic-stack/current
 PROJECT_STACK=~/workspace/tesla-stack
 ES_HOME=$STACK_DIR/elasticsearch
 #CLUSTER_NAME_DATA_DRIVE=data_drive.2019-01-09
 
-#if [ -z $ENV_CLUSTER_NAME ] ; then
-#  echo "Setting cluster.name with env vare: $ENV_CLUSTER_NAME"
-#  CLUSTER_NAME=$ENV_CLUSTER_NAME
-#fi
 
-if [ -z "$CLUSTER_NAME_DATA_DRIVE" ]; then
+echo "Does this exist?CLUSTER_NAME_DATA_DRIVE:  $CLUSTER_NAME_DATA_DRIVE" 
+if [  -z "$CLUSTER_NAME_DATA_DRIVE" ]; then
   read -p "CLUSTER_NAME_DATA_DRIVE not set, please enter(last default - data_drive.2019-01-09):  " CLUSTER_NAME_DATA_DRIVE
 fi
 
@@ -25,6 +23,27 @@ DATA_DIR=$CLUSTER_DIR/data
 PATH_CONFIGS=$CLUSTER_DIR/configs
 PIDS_DIR=$CLUSTER_DIR/pids
 LOGS_DIR=$CLUSTER_DIR/logs
+LOGS_KIBANA=$LOGS_DIR/kibana
+LOGS_LOGSTASH=$LOGS_DIR/logstash
+LOGS_BEATS=$LOGS_DIR/beats
+
+
+
+
+if [ ! -f $KIBANA_LOGS_DIR ] ; then
+  sudo mkdir -p $KIBANA_LOGS_DIR
+  echo "Created Kibana logs directorty
+fi
+
+if [ ! -f $LOGSTASH_LOGS_DIR ] ; then
+  sudo mkdir -p $LOGSTASH_LOGS_DIR
+  echo "Created Logstash logs directory
+fi
+
+if [ ! -f $BEATS_LOGS_DIR ] ; then
+  sudo mkdir -p $BEATS_LOGS_DIR
+  echo "Created Beatsh logs directory
+fi
 
 DEFAULT_CONFIGS_PATH_ES=${PROJECT_STACK}/default-configs/elasticsearch-data_drive
 DEFAULT_NODE_TYPE=config.default
