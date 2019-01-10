@@ -1,0 +1,24 @@
+# Environment variables needed in bash instance before running any stack scripts.
+STACK_DIR=~/workspace/elastic-stack/current
+ES_HOME=$STACK_DIR/elasticsearch
+CLUSTER_NAME=local_drive.2019-01-07
+CLUSTER_NAME_LOCAL=local_drive.2019-01-09
+CLUSTER_NAME_DATA_DRIVE=data_drive.2019-01-09
+#CLUSTER_NAME=$ENV_CLUSTER_NAME
+DATA_DRIVE=/data/local_drive
+CLUSTER_DIR=$DATA_DRIVE/elasticsearch/$CLUSTER_NAM
+
+DATA_DIR=$CLUSTER_DIR/data
+PATH_CONFIGS=$CLUSTER_DIR/configs
+PIDS_DIR=$CLUSTER_DIR/pids
+LOGS_DIR=$CLUSTER_DIR/logs
+PROJECT_STACK=~/workspace/tesla-stack
+DEFAULT_CONFIGS_PATH_ES=${PROJECT_STACK}/default-configs/elasticsearch
+DEFAULT_NODE_TYPE=default.config
+NUM_HOT_NODES=1
+NUM_WARM_NODES=1
+NUM_COOL_NODES=1
+NODE_HEAP_GB=4
+
+NODE_NAME=node0
+NODE_HEAP_GB=2
