@@ -1,0 +1,16 @@
+# Default minimal node configuration
+
+# cluster.name: elasticsearch
+# node.name: node-0-hot
+#node.attr.rack: r1
+node.attr.node_type: hot
+node.attr.storage_type: external
+# path.data:
+# path.logs: 
+# bootstrap.memory_lock: true
+network.host: 0.0.0.0
+#http.port: 9200
+#discovery.zen.ping.unicast.hosts: ["host1", "host2"]
+#discovery.zen.minimum_master_nodes: 
+#gateway.recover_after_nodes: 3
+#action.destructive_requires_name: true
