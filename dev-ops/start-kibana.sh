@@ -2,7 +2,7 @@
 dir=`pwd`
 cd ~/workspace/tesla-stack/dev-ops
 source ./cluster-vars.source
-echo "Kibana logs dir: $KIBANA_LOGS_DIR"
+echo "Kibana logs dir: $LOGS_DIR_KIBANA"
 cd
 cd ~/workspace/elastic-stack/current/kibana
 echo "Checking for logs dir: $LOGS_DIR_KIBANA"
