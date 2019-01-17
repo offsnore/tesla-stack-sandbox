@@ -1,7 +1,6 @@
-## tesla-stack - Elastic stack sandbox implementation going along side a Tesla project implementation
-=======
 ## Tesla Project - Elastic Stack the Model 3
 
+### tesla-stack - Elastic stack sandbox implementation going along side a Tesla project implementation
 This project is borne of tinkering and scripting with the Elastic stack primarily to build a contrived infrastructure platform for sandbox style architecture and performance testing:
 - Cluster design
 - Cluster architecgture
