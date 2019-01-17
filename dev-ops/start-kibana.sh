@@ -6,7 +6,7 @@ echo "Kibana logs dir: $LOGS_DIR_KIBANA"
 cd
 cd ~/workspace/elastic-stack/current/kibana
 echo "Checking for logs dir: $LOGS_DIR_KIBANA"
-if [ -z $LOGS_DIR_KIBANA ]; then 
+if [  -z $LOGS_DIR_KIBANA ]; then 
   read -p "Kibana logs directory not sourced. Please enter: " -p LOGS_DIR_KIBANA
 fi
 if [ ! -f $LOGS_DIR_KIBANA ] ; then
