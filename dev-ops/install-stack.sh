@@ -26,10 +26,8 @@ if [ -d "stack-download" ]; then
 elif [ ! -d "stack-download" ]; then
   mkdir stack-download
 fi
+echo "Initiating download of components into `pwd`/stack-download.."
 
-
-
-cd stack-download
 ./download-stack-components.sh
 echo .
 sleep 1
