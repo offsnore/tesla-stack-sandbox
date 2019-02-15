@@ -28,7 +28,7 @@ LOGS_DIR_LOGSTASH=$LOGS_DIR/logstash
 LOGS_DIR_BEATS=$LOGS_DIR/beats
 
 
-DEFAULT_CONFIGS_PATH_ES=${PROJECT_STACK}/default-configs/elasticsearch-data_drive
+DEFAULT_CONFIGS_PATH_ES=${PROJECT_STACK}/elasticsearch-configs/elasticsearch-data_drive
 DEFAULT_NODE_TYPE=config.default
 HOT_NODE_TYPE=config.hot
 WARM_NODE_TYPE=config.warm
@@ -106,6 +106,7 @@ fi
 # Create node config directories, if they don't exist
 if [ ! -z $PATH_CONFIGS/$NODE_NAME  ]; then
   sudo mkdir -p $PATH_CONFIGS/$NODE_NAME
+  sudo mkdir -p $PATH_CONFIGS/$NODE_NAME/certs
   echo "Created node config directory: $PATH_CONFIGS/$NODE_NAME"
   echo "Copying default configs from: $DEFAULT_CONFIGS_PATH_ES/$NODE_TYPE"
   if [ ! -f $PATH_CONFIGS/$NODE_NAME/elasticsearch.yml ]; then 
@@ -144,6 +145,7 @@ fi
 # Create node config directories, if they don't exist
 if [ ! -f $PATH_CONFIGS/$NODE_NAME  ]; then
   sudo mkdir -p $PATH_CONFIGS/$NODE_NAME
+  sudo mkdir -p $PATH_CONFIGS/$NODE_NAME/certs
   echo "Created node config directory: $PATH_CONFIGS/$NODE_NAME"
   echo "Copying default configs from: $DEFAULT_CONFIGS_PATH_ES/$NODE_TYPE"
   if [ ! -f $PATH_CONFIGS/$NODE_NAME/elasticsearch.yml ]; then 
@@ -166,8 +168,6 @@ cd $ES_HOME
 echo "Starting Elasticsearch from this directory: `pwd`"
 echo "Starting Elasticsearch node ${NODE_NAME} in cluster ${CLUSTER_NAME_LOCAL}"
 ES_JAVA_OPTS="-Xms2g -Xmx2g" ES_PATH_CONF="${PATH_CONFIGS}/${NODE_NAME}" ./bin/elasticsearch -E path.data=${DATA_DIR}/${NODE_NAME}  -p ${PIDS_DIR}/${NODE_NAME}.pid -E path.logs=${LOGS_DIR}/$NODE_NAME -E cluster.name=${CLUSTER_NAME_LOCAL}  -E node.name=${NODE_NAME} -d
-echo "Started Elasticsearch $NODE_NAME"
-echo "Logs are at $LOGS_DIR"
 echo "Data is at $DATA_DIR"
 echo "Pid file is at $PIDS_DIR/$NODE_NAME.pid: `cat $PIDS_DIR/$NODE_NAME.pid`"
 echo "Configs created are at $PATH_CONFIGS/$NODE_NAME"
@@ -184,6 +184,7 @@ fi
 # Create node config directories, if they don't exist
 if [ ! -f $PATH_CONFIGS/$NODE_NAME  ]; then
   sudo mkdir -p $PATH_CONFIGS/$NODE_NAME
+  sudo mkdir -p $PATH_CONFIGS/$NODE_NAME/certs
   echo "Created node config directory: $PATH_CONFIGS/$NODE_NAME"
   echo "Copying default configs from: $DEFAULT_CONFIGS_PATH_ES/$NODE_TYPE"
   if [ ! -f $PATH_CONFIGS/$NODE_NAME/elasticsearch.yml ]; then 

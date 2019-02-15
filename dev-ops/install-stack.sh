@@ -1,14 +1,15 @@
 #!/bin/bash
 # Download and build Elastic Stack
-# Uses environment variables galore and symlinks to simplify management and operation of the stack, halfway to demo various techniques useful in managing a stack. 
+# Uses environment variables galore and symlinks to simplify management and operation of the stack, halfway to demo various techniques useful in managing a stack.
 # This is a sandbox environment with the entire stack on one server, and should not be considered production ready.
 
-
+ES_STACK_VERSION=
 #TODO Prompt for ES_STACK_VERSION if not set
-ES_STACK_VERSION=$0
+if [ !-z $1 ]; then
+  ES_STACK_VERSION=$1
+fi
 if [ -z "$ES_STACK_VERSION" ]; then
-  echo "Enter stack version (latest from http://elastic.co/downloads)"
-  read -p  ES_STACK_VERSION
+  read -p  "Enter stack version (latest from http://elastic.co/downloads)" ES_STACK_VERSION
 fi
 echo ES Stack version to install: $ES_STACK_VERSION
 OS=darwin
@@ -57,7 +58,7 @@ wget https://dl.minio.io/server/minio/release/$OS-amd64/minio
 chmod +x minio
 
 # Filebeat runtime args TODO: move off /var/run
-cd 
+cd
 cd ~/workspace/elastic-stack
 
 #if [ ! -d "stack-download" ]; then

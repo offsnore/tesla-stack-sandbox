@@ -2,3 +2,5 @@
 logs
 minio*
 pids
+*.p12
+*.keystore
