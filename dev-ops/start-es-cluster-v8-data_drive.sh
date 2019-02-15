@@ -28,7 +28,7 @@ LOGS_DIR_LOGSTASH=$LOGS_DIR/logstash
 LOGS_DIR_BEATS=$LOGS_DIR/beats
 
 
-DEFAULT_CONFIGS_PATH_ES=${PROJECT_STACK}/default-configs/elasticsearch-data_drive
+DEFAULT_CONFIGS_PATH_ES=${PROJECT_STACK}/elasticsearch-configs/elasticsearch-data_drive
 DEFAULT_NODE_TYPE=config.default
 HOT_NODE_TYPE=config.hot
 WARM_NODE_TYPE=config.warm

@@ -7,8 +7,11 @@ STACK_DIR=~/workspace/elastic-stack/current
 PROJECT_STACK=~/workspace/tesla-stack
 #ES_HOME=$STACK_DIR/elasticsearch
 
+echo "STACK_DIR: $STACK_DIR"
+echo "PROJECT_STACK: $PROJECT_STACK"
+
 cd $PROJECT_STACK/dev-ops
-source ./cluster-vars.source
+source cluster-vars.source
 echo "ES_HOME sourced: $ES_HOME < should be there"
 
 echo "Does this exist? CLUSTER_NAME_LOCAL:  ${CLUSTER_NAME_LOCAL}" 
@@ -16,8 +19,8 @@ if [  -z "$CLUSTER_NAME_LOCAL" ]; then
   read -p "CLUSTER_NAME_LOCAL not set, please enter(last default - local_drive.2019-01-09):  " CLUSTER_NAME_LOCAL
 fi
 
-DATA_DRIVE=/data/local_drive
-CLUSTER_DIR=$DATA_DRIVE/elasticsearch/$CLUSTER_NAME_LOCAL
+#DATA_DRIVE=/data/data_drive
+CLUSTER_DIR=/data/local_drive/elasticsearch/$CLUSTER_NAME_LOCAL
 
 DATA_DIR=$CLUSTER_DIR/data
 PATH_CONFIGS=$CLUSTER_DIR/configs
@@ -28,7 +31,7 @@ LOGS_DIR_LOGSTASH=$LOGS_DIR/logstash
 LOGS_DIR_BEATS=$LOGS_DIR/beats
 
 
-DEFAULT_CONFIGS_PATH_ES=${PROJECT_STACK}/default-configs/elasticsearch-data_drive
+DEFAULT_CONFIGS_PATH_ES=${PROJECT_STACK}/elasticsearch-configs/elasticsearch-local
 DEFAULT_NODE_TYPE=config.default
 HOT_NODE_TYPE=config.hot
 WARM_NODE_TYPE=config.warm
@@ -37,6 +40,7 @@ NUM_HOT_NODES=1
 NUM_WARM_NODES=1
 NUM_COOL_NODES=1
 NODE_HEAP_GB=4
+echo "I AM HERE CLUSTER_DIR: $CLUSTER_DIR"
 
 echo "Checking that directory path exists: $DATA_DIR"
 # Set up $DATA_DIR paths
@@ -116,10 +120,10 @@ fi
 
 # IMPORTANT - chown node directories to non-root user
 echo "IMPORTANT: chowning recursively all cluster config, data directories created before starting up cluster.."
-sudo chown -R andrew:wheel ${PATH_CONFIGS}
-sudo chown -R andrew:wheel ${DATA_DIR}
-sudo chown -R andrew:wheel ${LOGS_DIR}
-sudo chown -R andrew:wheel ${PIDS_DIR}
+sudo chown -R andrew:andrew ${PATH_CONFIGS}
+sudo chown -R andrew:andrew ${DATA_DIR}
+sudo chown -R andrew:andrew ${LOGS_DIR}
+sudo chown -R andrew:andrew ${PIDS_DIR}
 
 
 cd $ES_HOME
@@ -158,10 +162,10 @@ fi
 
 # IMPORTANT - chown node directories to non-root user
 echo "IMPORTANT: chowning recursively all cluster config, data directories created before starting up cluster.."
-sudo chown -R andrew:wheel ${PATH_CONFIGS}
-sudo chown -R andrew:wheel ${DATA_DIR}
-sudo chown -R andrew:wheel ${LOGS_DIR}
-sudo chown -R andrew:wheel ${PIDS_DIR}
+sudo chown -R andrew:andrew ${PATH_CONFIGS}
+sudo chown -R andrew:andrew ${DATA_DIR}
+sudo chown -R andrew:andrew ${LOGS_DIR}
+sudo chown -R andrew:andrew ${PIDS_DIR}
 cd $ES_HOME
 echo "Starting Elasticsearch from this directory: `pwd`"
 echo "Starting Elasticsearch node ${NODE_NAME} in cluster ${CLUSTER_NAME_LOCAL}"
@@ -197,10 +201,10 @@ fi
 
 # IMPORTANT - chown node directories to non-root user
 echo "IMPORTANT: chowning recursively all cluster config, data directories created before starting up cluster.."
-sudo chown -R andrew:wheel ${PATH_CONFIGS}
-sudo chown -R andrew:wheel ${DATA_DIR}
-sudo chown -R andrew:wheel ${LOGS_DIR}
-sudo chown -R andrew:wheel ${PIDS_DIR}
+sudo chown -R andrew:andrew ${PATH_CONFIGS}
+sudo chown -R andrew:andrew ${DATA_DIR}
+sudo chown -R andrew:andrew ${LOGS_DIR}
+sudo chown -R andrew:andrew ${PIDS_DIR}
 
 cd $ES_HOME
 echo "Starting Elasticsearch node ${NODE_NAME} in cluster ${CLUSTER_NAME_LOCAL}"
