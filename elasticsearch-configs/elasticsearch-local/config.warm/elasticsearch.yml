@@ -14,3 +14,4 @@ network.host: 0.0.0.0
 #discovery.zen.minimum_master_nodes: 
 #gateway.recover_after_nodes: 3
 #action.destructive_requires_name: true
+xpack.security.enabled=true
