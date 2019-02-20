@@ -5,21 +5,11 @@
 
 ES_STACK_VERSION=
 #TODO Prompt for ES_STACK_VERSION if not set
-<<<<<<< HEAD
 if [ !-z $1 ]; then
   ES_STACK_VERSION=$1
 fi
 if [ -z "$ES_STACK_VERSION" ]; then
   read -p  "Enter stack version (latest from http://elastic.co/downloads)" ES_STACK_VERSION
-=======
-#ES_STACK_VERSION=
-#TODO Prompt for ES_STACK_VERSION if not set
-if [ ! -z $1 ]; then
-  ES_STACK_VERSION=$1
-fi
-if [  -z "$ES_STACK_VERSION" ]; then
-  read -p "Enter stack version (latest from http://elastic.co/downloads): " ES_STACK_VERSION
->>>>>>> bb872654c7163cf9550691b809884a92a2c8d394
 fi
 echo "ES Stack version to install: $ES_STACK_VERSION"
 OS=$OS
@@ -70,13 +60,8 @@ sleep 1
 #chmod +x minio
 
 # Filebeat runtime args TODO: move off /var/run
-<<<<<<< HEAD
-cd
-cd ~/workspace/elastic-stack
-=======
 #cd 
 #cd ~/workspace/elastic-stack
->>>>>>> bb872654c7163cf9550691b809884a92a2c8d394
 
 #if [ ! -d "stack-download" ]; then
 #  sudo mkdir /var/run/filebeat

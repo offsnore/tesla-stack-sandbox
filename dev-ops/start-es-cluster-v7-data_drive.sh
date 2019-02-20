@@ -116,10 +116,10 @@ fi
 
 # IMPORTANT - chown node directories to non-root user
 echo "IMPORTANT: chowning recursively all cluster config, data directories created before starting up cluster.."
-sudo chown -R andrew:wheel ${PATH_CONFIGS}
-sudo chown -R andrew:wheel ${DATA_DIR}
-sudo chown -R andrew:wheel ${LOGS_DIR}
-sudo chown -R andrew:wheel ${PIDS_DIR}
+sudo chown -R andrew:$OS_GROUP ${PATH_CONFIGS}
+sudo chown -R andrew:$OS_GROUP ${DATA_DIR}
+sudo chown -R andrew:$OS_GROUP ${LOGS_DIR}
+sudo chown -R andrew:$OS_GROUP ${PIDS_DIR}
 
 
 echo "Starting Elasticsearch node ${NODE_NAME} in cluster ${CLUSTER_NAME_DATA_DRIVE}"
@@ -154,10 +154,10 @@ fi
 
 # IMPORTANT - chown node directories to non-root user
 echo "IMPORTANT: chowning recursively all cluster config, data directories created before starting up cluster.."
-sudo chown -R andrew:wheel ${PATH_CONFIGS}
-sudo chown -R andrew:wheel ${DATA_DIR}
-sudo chown -R andrew:wheel ${LOGS_DIR}
-sudo chown -R andrew:wheel ${PIDS_DIR}
+sudo chown -R andrew:$OS_GROUP ${PATH_CONFIGS}
+sudo chown -R andrew:$OS_GROUP ${DATA_DIR}
+sudo chown -R andrew:$OS_GROUP ${LOGS_DIR}
+sudo chown -R andrew:$OS_GROUP ${PIDS_DIR}
 
 echo "Starting Elasticsearch node ${NODE_NAME} in cluster ${CLUSTER_NAME_DATA_DRIVE}"
 ES_JAVA_OPTS="-Xms2g -Xmx2g" ES_PATH_CONF="${PATH_CONFIGS}/${NODE_NAME}" ./bin/elasticsearch -E path.data=${DATA_DIR}/${NODE_NAME}  -p ${PIDS_DIR}/${NODE_NAME}.pid -E path.logs=${LOGS_DIR}/$NODE_NAME -E cluster.name=${CLUSTER_NAME_DATA_DRIVE}  -E node.name=${NODE_NAME} -d
@@ -190,10 +190,10 @@ else cd ~/workspace/elastic-stack/current/elasticsearch
 fi
 # IMPORTANT - chown node directories to non-root user
 echo "IMPORTANT: chowning recursively all cluster config, data directories created before starting up cluster.."
-sudo chown -R andrew:wheel ${PATH_CONFIGS}
-sudo chown -R andrew:wheel ${DATA_DIR}
-sudo chown -R andrew:wheel ${LOGS_DIR}
-sudo chown -R andrew:wheel ${PIDS_DIR}
+sudo chown -R andrew:$OS_GROUP ${PATH_CONFIGS}
+sudo chown -R andrew:$OS_GROUP ${DATA_DIR}
+sudo chown -R andrew:$OS_GROUP ${LOGS_DIR}
+sudo chown -R andrew:$OS_GROUP ${PIDS_DIR}
 
 echo "Starting Elasticsearch node ${NODE_NAME} in cluster ${CLUSTER_NAME_DATA_DRIVE}"
 ES_JAVA_OPTS="-Xms1g -Xmx1g" ES_PATH_CONF="${PATH_CONFIGS}/${NODE_NAME}" ./bin/elasticsearch -p ${PIDS_DIR}/${NODE_NAME}.pid -E path.data=${DATA_DIR}/${NODE_NAME}  -E path.logs=${LOGS_DIR}/$NODE_NAME -E node.name=${NODE_NAME} -E cluster.name=${CLUSTER_NAME_DATA_DRIVE} -d

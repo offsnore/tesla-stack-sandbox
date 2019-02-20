@@ -88,12 +88,8 @@ network.host: 0.0.0.0
 # Require explicit names when deleting indices:
 #
 #action.destructive_requires_name: true
-<<<<<<< HEAD
-xpack.security.transport.ssl.enabled: true
-xpack.security.transport.ssl.verification_mode: certificate 
-xpack.security.transport.ssl.keystore.path: certs/elastic-certificates.p12 
-xpack.security.transport.ssl.truststore.path: certs/elastic-certificates.p12 
-
-=======
-xpack.security.enabled=true
->>>>>>> bb872654c7163cf9550691b809884a92a2c8d394
+#xpack.security.transport.ssl.enabled: true
+#xpack.security.transport.ssl.verification_mode: certificate 
+#xpack.security.transport.ssl.keystore.path: certs/elastic-certificates.p12 
+#xpack.security.transport.ssl.truststore.path: certs/elastic-certificates.p12 
+#xpack.security.enabled=true

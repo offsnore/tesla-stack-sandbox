@@ -12,7 +12,7 @@ fi
 echo "Checkign to make sure kibana logs directory is created: [$LOGS_DIR_KIBANA]"
 if [ ! -f $LOGS_DIR_KIBANA ] ; then
   sudo mkdir $LOGS_DIR_KIBANA
-  sudo chown -R andrew:wheel $LOGS_DIR_KIBANA
+  sudo chown -R andrew:$OS_GROUP $LOGS_DIR_KIBANA
 fi
 echo "Kibana Log: $LOGS_DIR_KIBANA/kibana.log"
 ./bin/kibana -p 5602 -e "http://localhost:9205" >> $LOGS_DIR_KIBANA/kibana.log  & echo $! > kibana.pid

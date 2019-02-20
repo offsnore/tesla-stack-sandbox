@@ -91,10 +91,10 @@ fi
 
 # IMPORTANT - chown node directories to non-root user
 echo "IMPORTANT: chowning recursively all cluster config, data directories created before starting up cluster.."
-sudo chown -R andrew:wheel ${PATH_CONFIGS}
-sudo chown -R andrew:wheel ${DATA_DIR}
-sudo chown -R andrew:wheel ${LOGS_DIR}
-sudo chown -R andrew:wheel ${PIDS_DIR}
+sudo chown -R andrew:$OS_GROUP ${PATH_CONFIGS}
+sudo chown -R andrew:$OS_GROUP ${DATA_DIR}
+sudo chown -R andrew:$OS_GROUP ${LOGS_DIR}
+sudo chown -R andrew:$OS_GROUP ${PIDS_DIR}
 
 
 
@@ -131,10 +131,10 @@ fi
 
 # IMPORTANT - chown node directories to non-root user
 echo "IMPORTANT: chowning recursively all cluster config, data directories created before starting up cluster.."
-sudo chown -R andrew:wheel ${PATH_CONFIGS}
-sudo chown -R andrew:wheel ${DATA_DIR}
-sudo chown -R andrew:wheel ${LOGS_DIR}
-sudo chown -R andrew:wheel ${PIDS_DIR}
+sudo chown -R andrew:$OS_GROUP ${PATH_CONFIGS}
+sudo chown -R andrew:$OS_GROUP ${DATA_DIR}
+sudo chown -R andrew:$OS_GROUP ${LOGS_DIR}
+sudo chown -R andrew:$OS_GROUP ${PIDS_DIR}
 
 echo "Pid file is at $PIDS_DIR/$NODE_NAME.pid"
 echo "Starting Elasticsearch node ${NODE_NAME} in cluster ${CLUSTER_NAME_LOCAL}"
@@ -170,10 +170,10 @@ else cd ~/workspace/elastic-stack/current/elasticsearch
 fi
 # IMPORTANT - chown node directories to non-root user
 echo "IMPORTANT: chowning recursively all cluster config, data directories created before starting up cluster.."
-sudo chown -R andrew:wheel ${PATH_CONFIGS}
-sudo chown -R andrew:wheel ${DATA_DIR}
-sudo chown -R andrew:wheel ${LOGS_DIR}
-sudo chown -R andrew:wheel ${PIDS_DIR}
+sudo chown -R andrew:$OS_GROUP ${PATH_CONFIGS}
+sudo chown -R andrew:$OS_GROUP ${DATA_DIR}
+sudo chown -R andrew:$OS_GROUP ${LOGS_DIR}
+sudo chown -R andrew:$OS_GROUP ${PIDS_DIR}
 
 
 echo "Pid file is at $PIDS_DIR/$NODE_NAME.pid"
