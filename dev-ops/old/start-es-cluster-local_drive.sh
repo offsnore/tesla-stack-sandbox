@@ -121,10 +121,10 @@ fi
 
 # IMPORTANT - chown node directories to non-root user
 echo "IMPORTANT: chowning recursively all cluster config, data directories created before starting up cluster.."
-sudo chown -R andrew:andrew ${PATH_CONFIGS}
-sudo chown -R andrew:andrew ${DATA_DIR}
-sudo chown -R andrew:andrew ${LOGS_DIR}
-sudo chown -R andrew:andrew ${PIDS_DIR}
+sudo chown -R $OS_USER:$OS_GROUP ${PATH_CONFIGS}
+sudo chown -R $OS_USER:$OS_GROUP ${DATA_DIR}
+sudo chown -R $OS_USER:$OS_GROUP ${LOGS_DIR}
+sudo chown -R $OS_USER:$OS_GROUP ${PIDS_DIR}
 
 
 cd $ES_HOME
@@ -164,10 +164,10 @@ fi
 
 # IMPORTANT - chown node directories to non-root user
 echo "IMPORTANT: chowning recursively all cluster config, data directories created before starting up cluster.."
-sudo chown -R andrew:andrew ${PATH_CONFIGS}
-sudo chown -R andrew:andrew ${DATA_DIR}
-sudo chown -R andrew:andrew ${LOGS_DIR}
-sudo chown -R andrew:andrew ${PIDS_DIR}
+sudo chown -R $OS_USER:$OS_GROUP ${PATH_CONFIGS}
+sudo chown -R $OS_USER:$OS_GROUP ${DATA_DIR}
+sudo chown -R $OS_USER:$OS_GROUP ${LOGS_DIR}
+sudo chown -R $OS_USER:$OS_GROUP ${PIDS_DIR}
 cd $ES_HOME
 echo "Starting Elasticsearch from this directory: `pwd`"
 echo "Starting Elasticsearch node ${NODE_NAME} in cluster ${CLUSTER_NAME_LOCAL}"
@@ -202,10 +202,10 @@ fi
 
 # IMPORTANT - chown node directories to non-root user
 echo "IMPORTANT: chowning recursively all cluster config, data directories created before starting up cluster.."
-sudo chown -R andrew:andrew ${PATH_CONFIGS}
-sudo chown -R andrew:andrew ${DATA_DIR}
-sudo chown -R andrew:andrew ${LOGS_DIR}
-sudo chown -R andrew:andrew ${PIDS_DIR}
+sudo chown -R $OS_USER:$OS_GROUP ${PATH_CONFIGS}
+sudo chown -R $OS_USER:$OS_GROUP ${DATA_DIR}
+sudo chown -R $OS_USER:$OS_GROUP ${LOGS_DIR}
+sudo chown -R $OS_USER:$OS_GROUP ${PIDS_DIR}
 
 cd $ES_HOME
 echo "Starting Elasticsearch node ${NODE_NAME} in cluster ${CLUSTER_NAME_LOCAL}"
