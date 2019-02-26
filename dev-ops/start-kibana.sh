@@ -1,4 +1,5 @@
 #!/bin/bash
+
 dir=`pwd`
 cd ~/workspace/tesla-stack/dev-ops
 source ./cluster-vars.source
@@ -22,7 +23,7 @@ fi
 
 echo "Where am I: `pwd`"
 echo "Kibana Log: $LOGS_DIR_KIBANA/kibana.log"
-./bin/kibana  >> $LOGS_DIR_KIBANA/kibana.log  & echo $! > $PIDS_DIR/kibana.pid
+./bin/kibana -c $KIBANA_CONFIG_LOCAL >> $LOGS_DIR_KIBANA/kibana.log  & echo $! > $PIDS_DIR/kibana.pid
 echo $! > $PIDS_DIR/kibana.pid
 echo "Kibana started with pid `cat $PIDS_DIR/kibana.pid`"
 

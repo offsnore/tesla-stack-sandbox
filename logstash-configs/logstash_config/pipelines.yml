@@ -1,7 +1,9 @@
- - pipeline.id: test
+ #- pipeline.id: test
+ #  pipeline.workers: 1
+ #  pipeline.batch.size: 1
+ #  config.string: "input { generator {} } filter { sleep { time => 1 } } output { stdout { codec => dots } }"
+ - pipeline.id: tesla_charge_state
    pipeline.workers: 1
    pipeline.batch.size: 1
-   config.string: "input { generator {} } filter { sleep { time => 1 } } output { stdout { codec => dots } }"
- - pipeline.id: another_test
    queue.type: persisted
-   path.config: "~/workspace/tesla-stack/logstash-configs/conf.d/*.conf"
+   path.config: "~/workspace/tesla-stack/logstash-configs/conf.d/tesla-charge-state.conf"
