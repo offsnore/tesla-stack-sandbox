@@ -88,3 +88,10 @@ network.host: 0.0.0.0
 # Require explicit names when deleting indices:
 #
 #action.destructive_requires_name: true
+script.painless.regex.enabled: true
+script.painless.regex.enabled: true
+script.painless.regex.enabled: true
+xpack.monitoring.exporters:
+  id1:
+    type: http
+    host: ["http://es-mon-1:9211"]

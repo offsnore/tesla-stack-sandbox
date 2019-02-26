@@ -19,3 +19,4 @@ network.host: 0.0.0.0
 #xpack.security.transport.ssl.verification_mode: certificate 
 #xpack.security.transport.ssl.keystore.path: certs/elastic-certificates.p12 
 #xpack.security.transport.ssl.truststore.path: certs/elastic-certificates.p12 
+script.painless.regex.enabled: true

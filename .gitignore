@@ -4,3 +4,5 @@ minio*
 pids
 *.p12
 *.keystore
+work-log.md
+bear-work-log.md

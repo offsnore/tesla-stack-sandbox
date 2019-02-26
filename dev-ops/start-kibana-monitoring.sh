@@ -1,0 +1,22 @@
+#!/bin/bash
+dir=`pwd`
+cd ~/workspace/tesla-stack/dev-ops
+source ./cluster-vars.source
+echo "Kibana logs dir: $LOGS_DIR_KIBANA_MONITORING"
+cd
+cd ~/workspace/elastic-stack/current/kibana
+echo "Checking for logs dir: $LOGS_DIR_KIBANA_MONITORING"
+if [  -z $LOGS_DIR_KIBANA_MONITORING ]; then 
+  read -p "Kibana logs directory not sourced. Please enter: " -p LOGS_DIR_KIBANA_MONITORING
+fi
+echo "Checkign to make sure kibana logs directory is created: [$LOGS_DIR_KIBANA_MONITORING]"
+if [ ! -f $LOGS_DIR_KIBANA_MONITORING ] ; then
+  sudo mkdir $LOGS_DIR_KIBANA_MONITORING
+  sudo chown -R andrew:$OS_GROUP $LOGS_DIR_KIBANA_MONITORING
+fi
+echo "Kibana Log: $LOGS_DIR_KIBANA_MONITORING/kibana.log"
+./bin/kibana -p 5611 -e "http://localhost:9211" >> $LOGS_DIR_KIBANA_MONITORING/kibana.log  & echo $! > kibana.pid
+echo $! > kibana-monitoring.pid
+echo "Kibana started with pid `cat kibana.pid`"
+
+cd $dir

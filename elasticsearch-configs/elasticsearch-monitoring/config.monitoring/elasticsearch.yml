@@ -14,7 +14,7 @@
 #
 # Use a descriptive name for your cluster:
 #
-# cluster.name: elasticsearch
+cluster.name: monitoring
 #
 # ------------------------------------ Node ------------------------------------
 #
@@ -25,8 +25,8 @@
 # Add custom attributes to the node:
 #
 #node.attr.rack: r1
-node.attr.node_type: hot
-node.attr.storage_type: internal
+#node.attr.node_type: monitoring
+#node.attr.storage_type: external
 #
 # ----------------------------------- Paths ------------------------------------
 #
@@ -58,7 +58,7 @@ network.host: 0.0.0.0
 #
 # Set a custom port for HTTP:
 #
-#http.port: 9200
+http.port: 9211
 #
 # For more information, consult the network module documentation.
 #
@@ -87,10 +87,4 @@ network.host: 0.0.0.0
 #
 # Require explicit names when deleting indices:
 #
-#action.destructive_requires_name: true
-#xpack.security.transport.ssl.enabled: true
-#xpack.security.transport.ssl.verification_mode: certificate 
-#xpack.security.transport.ssl.keystore.path: certs/elastic-certificates.p12 
-#xpack.security.transport.ssl.truststore.path: certs/elastic-certificates.p12 
-#xpack.security.enabled: false
 script.painless.regex.enabled: true
